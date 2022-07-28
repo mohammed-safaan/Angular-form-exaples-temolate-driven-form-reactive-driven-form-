@@ -1,0 +1,76 @@
+<div
+  class="container d-flex flex-wrap justify-content-center align-items-center p-2 bg-dark text-light"
+>
+  <form [formGroup]="newProductForm" class="w-75 p-2">
+    <div class="mb-3 input-group justify-content-between">
+      <label for="productId" class="form-label me-2">product id</label>
+      <input type="text" class="form-control" formControlName="id" />
+    </div>
+    <!-- title -->
+    <div class="mb-3 input-group justify-content-between">
+      <label for="title" class="form-label me-2">product title</label>
+      <input type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <!-- error msg -->
+    <div
+      *ngIf="title.invalid && (title.dirty || title.touched)"
+      class="alert alert-danger w-50 p-2 m-2 mx-auto"
+    >
+      <div *ngIf="title.errors?.['required']">Title is required.</div>
+      <div *ngIf="title.errors?.['minlength']">
+        Title must be at least 5 characters long.
+      </div>
+    </div>
+    <!-- price -->
+    <div class="mb-3 input-group justify-content-between">
+      <label for="price" class="form-label me-2">product price</label>
+      <input type="text" class="form-control" formControlName="price" />
+    </div>
+    <!-- error msg -->
+    <div
+      *ngIf="price.invalid && (price.dirty || price.touched)"
+      class="alert alert-danger w-50 p-2 m-2 mx-auto"
+    >
+      <div *ngIf="price.errors?.['required']">price is required</div>
+    </div>
+    <!-- description -->
+    <div class="mb-3 input-group justify-content-between">
+      <label for="description" class="form-label me-2"
+        >product description</label
+      >
+      <input type="text" class="form-control" formControlName="description" />
+    </div>
+    <!-- category -->
+    <div class="mb-3 input-group justify-content-between">
+      <label for="category" class="form-label me-2">product category</label>
+      <input type="text" class="form-control" formControlName="category" />
+    </div>
+    <!-- image -->
+    <div class="mb-3 input-group justify-content-between">
+      <label for="image" class="form-label me-2">product image</label>
+      <input type="text" class="form-control" formControlName="image" />
+    </div>
+    <!-- rating -->
+    <div class="" formGroupName="rating">
+      <!-- rate -->
+      <div class="mb-3 input-group justify-content-between">
+        <label for="rate" class="form-label me-2">product rate</label>
+        <input type="text" class="form-control" formControlName="rate" />
+      </div>
+      <!-- count -->
+      <div class="mb-3 input-group justify-content-between">
+        <label for="count" class="form-label me-2">product count</label>
+        <input type="text" class="form-control" formControlName="count" />
+      </div>
+    </div>
+    <button
+      type="button"
+      [disabled]="newProductForm.invalid"
+      class="btn btn-warning"
+      (click)="addProduct(newProductForm.value)"
+    >
+      Add
+    </button>
+  </form>
+</div>
